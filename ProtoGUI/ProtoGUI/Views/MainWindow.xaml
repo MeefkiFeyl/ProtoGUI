@@ -1,0 +1,141 @@
+﻿<Window x:Class="ProtoGUI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ProtoGUI.ViewModels"
+        mc:Ignorable="d"
+        WindowState="Normal"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="MainWindow"
+        Height="200" 
+        Width="600">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="94*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition MinWidth="85" Width="10*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition MinWidth="50" Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+
+            <Label 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Content="File location" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Right"
+                Padding="0"
+                Margin="0,0,13,0"/>
+            <TextBox 
+                Grid.Row="0" 
+                Grid.Column="2"
+                Margin="0"
+                Padding="1,0,0,0"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                IsReadOnly="True"
+                Text="{Binding FileLocation, Mode=OneWay}"/>
+            <Button
+                Grid.Row="0"
+                Grid.Column="3"
+                Content="..."
+                Command="{Binding SelectFileLocation}"/>
+
+            <Label 
+                Grid.Row="2" 
+                Grid.Column="1"
+                Content="File" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Right"
+                Padding="0"
+                Margin="0,0,13,0"/>
+            <TextBox 
+                Grid.Row="2" 
+                Grid.Column="2"
+                Margin="0"
+                Padding="1,0,0,0"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                IsReadOnly="True"
+                Text="{Binding File, Mode=OneWay}"/>
+            <Button
+                Grid.Row="2"
+                Grid.Column="3"
+                Content="..."
+                IsEnabled="{Binding SelectFileIsEnable}"
+                Command="{Binding SelectFile}"/>
+
+            <Label 
+                Grid.Row="4" 
+                Grid.Column="1"
+                Content="Output dir" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Right"
+                Padding="0"
+                Margin="0,0,13,0"/>
+            <TextBox 
+                Grid.Row="4" 
+                Grid.Column="2"
+                Margin="0"
+                Padding="1,0,0,0"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                IsReadOnly="True"
+                Text="{Binding OutputDir, Mode=OneWay}"/>
+            <Button
+                Grid.Row="4"
+                Grid.Column="3"
+                Content="..."
+                IsEnabled="{Binding SelectOutputDirIsEnable}"
+                Command="{Binding SelectOutputDir}"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Content="Compile"
+                Command="{Binding ExecuteCommand}"
+                IsEnabled="{Binding CompileIsEnable}"/>
+        </Grid>
+
+    </Grid>
+</Window>
